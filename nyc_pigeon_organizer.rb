@@ -1,3 +1,4 @@
+# Helper methods.
 def get_pigeon_color(pigeon_data, pigeon_name)
   pigeon_colors = {}
   colors = []
@@ -9,28 +10,19 @@ end
 
 def get_pigeon_location(pigeon_data, pigeon_name)
   pigeon_data[:lives].each do |location, pigeon_names|
-    pigeon_names.each do |name|
-      if name == pigeon_name 
-        return [location]
-      end
-
-    end
+    pigeon_names.each { |name| return [location] if name == pigeon_name } 
   end
 end
 
 def get_pigeon_gender(pigeon_data, pigeon_name)
   pigeon_data[:gender].each do |gender, pigeon_names|
-    pigeon_names.each do |name|
-      return [gender.to_s] if name == pigeon_name 
-    end
+    pigeon_names.each { |name| return [gender.to_s] if name == pigeon_name }
   end
 end
 
 def get_pigeon_names(data)
   names = []
-  data.each do |attributes, info|
-    info.each { |data, val| names << val }
-  end
+  data.each { |attributes, info| info.each { |data, val| names << val } }
   names.flatten.uniq
 end
 
