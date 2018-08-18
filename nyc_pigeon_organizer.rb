@@ -1,6 +1,5 @@
 # Helper methods.
 def get_pigeon_color(pigeon_data, pigeon_name)
-  pigeon_colors = {}
   colors = []
   pigeon_data[:color].each do |color, owner|
     owner.each { |bird| colors << color.to_s if bird == pigeon_name }
@@ -25,7 +24,6 @@ def get_pigeon_names(data)
   data.each { |attributes, info| info.each { |data, val| names << val } }
   names.flatten.uniq
 end
-
 
 def nyc_pigeon_organizer(data)
   pigeon_list = {}
