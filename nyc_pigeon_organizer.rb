@@ -1,5 +1,8 @@
+require "pry"
 def nyc_pigeon_organizer(data)
-  data.each do |attributes_Key, hash| 
+ organized = {}
+
+ data.each do |attributes_key, hash| 
   # p attributes # => color
   # p hash # =>:purple=>["Theo", "Peter ..]
   hash.each do |props, pigeon|
@@ -10,20 +13,20 @@ def nyc_pigeon_organizer(data)
   #  p pigeon
      pigeon.each do |name| 
        if !organized.has_key?(name)
-          organized[name] = name
+          organized[name] = Hash.new
        end 
-       if !organized.has_key?(attributes_Key)
-           organized[name] = {}
-           organized[name][attributes_Key] = attributes_Key
-       end 
-       if !organized.has_key?(props)
-           organized[name][attributes_Key] = []
-           organized[name][attributes_Key] << props
+      # binding pry
+       if !organized[name].has_key?(attributes_key) #or .can use include?
+           organized[name][attributes_key] = [] #placing every attribute value in a new array 
+           organized[name][attributes_key] << props.to_s
+    
+         else 
+           organized[name][attributes_key].push(props.to_s)
       end 
 
     end 
   end 
-  p organized
+  end 
+   organized
  end 
-
-end
+# p nyc_pigeon_organizer(data)
